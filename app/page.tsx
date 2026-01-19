@@ -51,27 +51,57 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Animated Background Elements */}
+      {/* Tech Background Effects */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {/* Animated Orbs */}
         <div className="absolute top-20 left-10 w-32 h-32 bg-sonic-light/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-20 right-10 w-40 h-40 bg-sonic-speed/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-sonic-accent/10 rounded-full blur-2xl animate-bounce"></div>
+
+        {/* Floating Particles */}
+        {[...Array(15)].map((_, i) => (
+          <div
+            key={`particle-${i}`}
+            className="tech-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${8 + Math.random() * 4}s`,
+            }}
+          ></div>
+        ))}
+
+        {/* Data Streams */}
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`stream-${i}`}
+            className="data-stream"
+            style={{
+              left: `${10 + i * 12}%`,
+              animationDelay: `${i * 0.4}s`,
+              animationDuration: `${3 + Math.random() * 2}s`,
+            }}
+          ></div>
+        ))}
       </div>
 
+      {/* Scanning Light Effect */}
+      <div className="scan-effect"></div>
+
       {/* Navigation */}
-      <nav className="relative z-10 bg-sonic-dark/80 backdrop-blur-lg border-b border-sonic-light/30">
+      <nav className="relative z-10 glass-card border-b-2 border-sonic-speed/30">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl font-bold tracking-widest sonic-glow">
-            <span className="text-sonic-accent">SEAN</span>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-widest">
+            <span className="neon-text text-sonic-accent">SEAN</span>
             <span className="text-white">&apos;S WORLD</span>
           </h1>
           <div className="flex gap-4 md:gap-6">
-            <a href="#hobbies" className="text-white hover:text-sonic-accent transition-colors duration-300">
+            <a href="#hobbies" className="text-white hover:text-sonic-speed transition-all duration-300 hover:neon-text">
               爱好
             </a>
             <button
               onClick={() => setShowChat(!showChat)}
-              className="text-white hover:text-sonic-accent transition-colors duration-300"
+              className="text-white hover:text-sonic-speed transition-all duration-300 hover:neon-text"
             >
               聊天
             </button>
@@ -102,15 +132,15 @@ export default function Home() {
 
         <div className="relative z-10 text-center">
           <div className="mb-6 inline-block animate-bounce">
-            <div className="text-8xl md:text-9xl speed-trail">🦔</div>
+            <div className="text-8xl md:text-9xl speed-trail filter drop-shadow-[0_0_30px_rgba(0,217,255,0.8)]">🦔</div>
           </div>
-          <h2 className="text-5xl md:text-7xl font-extrabold mb-4 italic text-white sonic-glow">
+          <h2 className="text-5xl md:text-7xl font-extrabold mb-4 italic neon-text">
             SEAN
           </h2>
-          <p className="text-xl md:text-2xl text-sonic-accent font-semibold">
+          <p className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-sonic-accent via-sonic-speed to-sonic-accent bg-clip-text text-transparent">
             国际象棋手 | 小球员 | 正义守护者
           </p>
-          <div className="mt-4 text-sonic-speed text-lg font-bold tracking-widest animate-pulse">
+          <div className="mt-4 text-sonic-speed text-lg font-bold tracking-widest neon-text animate-pulse">
             ⚡ GOTTA GO FAST! ⚡
           </div>
         </div>
@@ -126,31 +156,42 @@ export default function Home() {
 
       {/* Hobbies Section */}
       <section id="hobbies" className="relative z-10 container mx-auto py-16 md:py-20 px-4">
-        <h3 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
-          我的<span className="text-sonic-accent">超级力量</span>
+        <h3 className="text-4xl md:text-5xl font-bold text-center mb-12">
+          我的<span className="neon-text text-sonic-accent">超级力量</span>
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {hobbies.map((hobby, index) => (
             <div
               key={index}
-              className={`bg-white/10 backdrop-blur-md rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
-                transform transition-all duration-300 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
-                group relative overflow-hidden ${hobby.is3D ? 'soccer-card-3d' : ''}`}
+              className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
+                transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
+                group relative overflow-hidden ${hobby.is3D ? 'soccer-card-3d' : ''}
+                before:absolute before:inset-0 before:bg-gradient-to-br before:from-white/5 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-500`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              {/* Card Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-sonic-light/0 via-sonic-light/0 to-sonic-light/20
-                opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+              {/* Animated Border Glow */}
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `linear-gradient(135deg, transparent 0%, ${hobby.color.includes('sonic') ? 'rgba(0, 217, 255, 0.2)' : 'rgba(255, 255, 255, 0.1)'} 50%, transparent 100%)`,
+                }}
+              ></div>
+
+              {/* Tech Corner Accents */}
+              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-sonic-speed/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-sonic-speed/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
               <div className={`relative z-10 ${hobby.is3D ? 'card-inner' : ''}`}>
-                <div className={`text-5xl md:text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300
+                <div className={`text-5xl md:text-6xl mb-4 transform group-hover:scale-110 transition-transform duration-300 filter group-hover:drop-shadow-[0_0_20px_rgba(0,217,255,0.6)]
                   ${hobby.is3D ? 'animate-[soccer-bounce_2s_ease-in-out_infinite]' : ''}`}>
                   {hobby.icon}
                 </div>
-                <h4 className="text-xl md:text-2xl font-bold mb-3 text-white">{hobby.title}</h4>
-                <p className="text-gray-200 leading-relaxed">{hobby.description}</p>
+                <h4 className="text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-sonic-speed transition-colors duration-300">{hobby.title}</h4>
+                <p className="text-gray-200 leading-relaxed group-hover:text-white transition-colors duration-300">{hobby.description}</p>
               </div>
+
+              {/* Scan Line Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-sonic-speed/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 group-hover:animate-[scan-light_2s_ease-in-out_infinite]"></div>
             </div>
           ))}
         </div>
@@ -160,10 +201,10 @@ export default function Home() {
       {showChat && <ChatBox onClose={() => setShowChat(false)} />}
 
       {/* Footer */}
-      <footer className="relative z-10 text-center py-10 text-gray-300 border-t border-sonic-light/30 bg-sonic-dark/50">
-        <p className="text-sm md:text-base">
+      <footer className="relative z-10 text-center py-10 glass-card border-t-2 border-sonic-speed/30">
+        <p className="text-sm md:text-base text-gray-300">
           © 2025 Built with <span className="text-red-500 animate-pulse">❤️</span> and{' '}
-          <span className="text-sonic-accent">⚡</span> for Sean
+          <span className="neon-text text-sonic-accent">⚡</span> for Sean
         </p>
         <p className="text-xs mt-2 text-gray-400">Powered by Next.js & Tailwind CSS</p>
       </footer>
@@ -172,9 +213,11 @@ export default function Home() {
       {!showChat && (
         <button
           onClick={() => setShowChat(true)}
-          className="fixed bottom-8 right-8 w-16 h-16 bg-gradient-to-br from-sonic-blue to-sonic-light
+          className="fixed bottom-8 right-8 w-16 h-16 glass-card border-2 border-sonic-speed/50
             rounded-full shadow-2xl flex items-center justify-center text-3xl
-            hover:scale-110 transition-transform duration-300 sonic-glow z-50 animate-bounce"
+            hover:scale-110 transition-all duration-300 z-50 animate-bounce
+            hover:border-sonic-speed hover:shadow-[0_0_30px_rgba(0,217,255,0.6)]
+            bg-gradient-to-br from-sonic-blue/20 to-sonic-light/20"
         >
           💬
         </button>
