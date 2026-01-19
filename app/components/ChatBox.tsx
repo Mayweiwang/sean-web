@@ -29,52 +29,52 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
   const getAIResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
 
-    // 关于 Sonic 的回复
-    if (lowerMessage.includes('sonic') || lowerMessage.includes('索尼克')) {
-      return '⚡ 说到 Sonic，那可是 Sean 的最爱！Sonic 的速度精神激励着 Sean 每天都要"超速前进"！就像 Sonic 收集金环一样，Sean 也在不断收集新技能和知识。Gotta go fast! 🦔💨';
+    // About Sonic
+    if (lowerMessage.includes('sonic')) {
+      return '⚡ Sonic is Sean\'s absolute favorite! Sonic\'s spirit of speed inspires Sean to "go fast" every day! Just like Sonic collects gold rings, Sean is constantly collecting new skills and knowledge. Gotta go fast! 🦔💨';
     }
 
-    // 关于国际象棋的回复
-    if (lowerMessage.includes('象棋') || lowerMessage.includes('chess')) {
-      return '♟️ Sean 在国际象棋方面很有天赋哦！他喜欢思考每一步棋的策略，就像 Sonic 规划最快路线一样。在棋盘上，Sean 就是运筹帷幄的指挥官！Checkmate! ✨';
+    // About Chess
+    if (lowerMessage.includes('chess')) {
+      return '♟️ Sean is really talented at chess! He loves thinking about the strategy of each move, just like Sonic planning the fastest route. On the chessboard, Sean is the strategic commander! Checkmate! ✨';
     }
 
-    // 关于足球的回复
-    if (lowerMessage.includes('足球') || lowerMessage.includes('soccer') || lowerMessage.includes('football')) {
-      return '⚽ 足球是 Sean 最喜欢的运动之一！在绿茵场上奔跑的感觉就像 Sonic 在赛道上飞驰一样自由！团队合作的精神让每一场比赛都充满激情。Goal! 🎯';
+    // About Soccer
+    if (lowerMessage.includes('soccer') || lowerMessage.includes('football')) {
+      return '⚽ Soccer is one of Sean\'s favorite sports! Running on the field feels as free as Sonic racing on the track! The spirit of teamwork makes every game exciting. Goal! 🎯';
     }
 
-    // 关于奥特曼的回复
-    if (lowerMessage.includes('奥特曼') || lowerMessage.includes('ultraman')) {
-      return '✨ Sean 相信光的力量！就像奥特曼守护地球一样，Sean 也希望用自己的方式守护身边的人。正义、勇气、永不放弃 —— 这些都是 Sean 从奥特曼身上学到的品质！💫';
+    // About Ultraman
+    if (lowerMessage.includes('ultraman')) {
+      return '✨ Sean believes in the power of light! Just like Ultraman protects Earth, Sean hopes to protect those around him in his own way. Justice, courage, never giving up — these are all qualities Sean learned from Ultraman! 💫';
     }
 
-    // 关于疯狂动物城的回复
-    if (lowerMessage.includes('疯狂动物城') || lowerMessage.includes('朱迪') || lowerMessage.includes('zootopia')) {
-      return '🦊🐰 "Try Everything" 是 Sean 的人生格言之一！就像朱迪一样，即使遇到困难也要勇敢尝试。每个梦想都值得追求，每个挑战都是成长的机会！Stay positive! ✨';
+    // About Zootopia
+    if (lowerMessage.includes('zootopia') || lowerMessage.includes('judy')) {
+      return '🦊🐰 "Try Everything" is one of Sean\'s life mottos! Like Judy, he bravely tries even when facing difficulties. Every dream is worth pursuing, and every challenge is an opportunity to grow! Stay positive! ✨';
     }
 
-    // 关于 Sean 的爱好
-    if (lowerMessage.includes('爱好') || lowerMessage.includes('喜欢') || lowerMessage.includes('hobby')) {
-      return '🌟 Sean 有好多爱好呢！国际象棋锻炼思维、足球强身健体、Sonic 给他速度的激情、奥特曼教会他正义、疯狂动物城让他学会勇敢尝试。每个爱好都让 Sean 变得更棒！⚡';
+    // About hobbies
+    if (lowerMessage.includes('hobby') || lowerMessage.includes('hobbies') || lowerMessage.includes('like')) {
+      return '🌟 Sean has so many hobbies! Chess exercises his mind, soccer keeps him fit, Sonic gives him passion for speed, Ultraman teaches him justice, and Zootopia inspires him to be brave. Every hobby makes Sean even better! ⚡';
     }
 
-    // 问候语
-    if (lowerMessage.includes('你好') || lowerMessage.includes('hi') || lowerMessage.includes('hello')) {
-      return '👋 你好呀！我是 Sean 的虚拟小助手！很高兴见到你！问我任何关于 Sean 的问题吧，让我们像 Sonic 一样开启超速对话！⚡🦔';
+    // Greetings
+    if (lowerMessage.includes('hi') || lowerMessage.includes('hello') || lowerMessage.includes('hey')) {
+      return '👋 Hi there! I\'m Sean\'s virtual assistant! Nice to meet you! Ask me anything about Sean, and let\'s start a super-fast conversation like Sonic! ⚡🦔';
     }
 
-    // Sean 是谁
-    if (lowerMessage.includes('sean') || lowerMessage.includes('是谁') || lowerMessage.includes('介绍')) {
-      return '🦔 Sean 是一个充满活力和梦想的小朋友！他热爱运动、喜欢思考、崇尚速度、相信正义。就像 Sonic 一样，Sean 总是充满能量，永远向前冲！他的每一天都是新的冒险！✨';
+    // About Sean
+    if (lowerMessage.includes('sean') || lowerMessage.includes('who')) {
+      return '🦔 Sean is an energetic and dreamy kid! He loves sports, enjoys thinking, pursues speed, and believes in justice. Just like Sonic, Sean is always full of energy and always moving forward! Every day is a new adventure for him! ✨';
     }
 
-    // 默认回复
+    // Default responses
     const defaultResponses = [
-      '⚡ 哇，有意思的问题！Sean 的世界充满了速度与激情，就像 Sonic 一样！继续探索吧！🦔',
-      '🌟 Sean 最喜欢的就是学习新东西了！你的问题很棒，让我们一起超速前进！💨',
-      '✨ 像 Sonic 收集金环一样，Sean 也在不断收集知识和经验！继续聊天吧！⚡',
-      '🎯 Try Everything！这是 Sean 的座右铭。你的好奇心很棒，继续提问吧！🦊',
+      '⚡ Wow, interesting question! Sean\'s world is full of speed and passion, just like Sonic! Keep exploring! 🦔',
+      '🌟 Sean loves learning new things! Your question is great, let\'s go super fast together! 💨',
+      '✨ Just like Sonic collects gold rings, Sean keeps collecting knowledge and experience! Keep chatting! ⚡',
+      '🎯 Try Everything! That\'s Sean\'s motto. Your curiosity is awesome, keep asking! 🦊',
     ];
 
     return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
@@ -114,7 +114,7 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
           <div className="flex items-center gap-3">
             <div className="text-3xl animate-bounce">🦔</div>
             <div>
-              <h3 className="text-xl font-bold text-white">Sean 的小助手</h3>
+              <h3 className="text-xl font-bold text-white">Sean&apos;s Assistant</h3>
               <p className="text-xs text-sonic-accent">⚡ Powered by AI</p>
             </div>
           </div>
@@ -131,8 +131,8 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
           {messages.length === 0 && (
             <div className="text-center text-gray-300 mt-20">
               <div className="text-6xl mb-4 animate-pulse">💬</div>
-              <p className="text-lg">你好！我是 Sean 的虚拟小助手</p>
-              <p className="text-sm text-sonic-accent mt-2">问我任何关于 Sean 的问题吧！</p>
+              <p className="text-lg">Hi! I&apos;m Sean&apos;s Virtual Assistant</p>
+              <p className="text-sm text-sonic-accent mt-2">Ask me anything about Sean!</p>
             </div>
           )}
 
@@ -178,7 +178,7 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="输入你的问题..."
+              placeholder="Type your question..."
               className="flex-1 bg-white/10 border border-sonic-light/30 rounded-full px-5 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-sonic-accent focus:border-transparent transition-all"
               disabled={isLoading}
             />

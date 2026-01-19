@@ -9,40 +9,40 @@ export default function Home() {
   const hobbies = [
     {
       icon: '♟️',
-      title: '国际象棋',
-      description: '在棋盘上，我就是运筹帷幄的指挥官。Checkmate!',
+      title: 'Chess',
+      description: 'On the chessboard, I am the strategic commander. Checkmate!',
       color: 'border-gray-800',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(0,0,0,0.5)]',
       is3D: false,
     },
     {
       icon: '⚽',
-      title: '足球',
-      description: '绿茵场上的奔跑，是我最快乐的时间。Goal!',
+      title: 'Soccer',
+      description: 'Running on the field is my happiest time. Goal!',
       color: 'border-green-500',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(34,197,94,0.5)]',
       is3D: true,
     },
     {
       icon: '🦔',
-      title: 'Sonic 索尼克',
-      description: '追求速度，永不止步。Gotta go fast!',
+      title: 'Sonic',
+      description: 'Chasing speed, never stopping. Gotta go fast!',
       color: 'border-sonic-light',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(0,102,217,0.7)]',
       is3D: false,
     },
     {
       icon: '✨',
-      title: '奥特曼',
-      description: '相信光的力量，守护地球的和平！',
+      title: 'Ultraman',
+      description: 'Believe in the power of light, protecting peace on Earth!',
       color: 'border-red-500',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(239,68,68,0.5)]',
       is3D: false,
     },
     {
       icon: '🦊🐰',
-      title: '疯狂动物城',
-      description: '"尝试一切(Try Everything)"，像朱迪一样勇敢。',
+      title: 'Zootopia',
+      description: '"Try Everything" - Be brave like Judy!',
       color: 'border-orange-400',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(251,146,60,0.5)]',
       is3D: false,
@@ -97,13 +97,13 @@ export default function Home() {
           </h1>
           <div className="flex gap-4 md:gap-6">
             <a href="#hobbies" className="text-white hover:text-sonic-speed transition-all duration-300 hover:neon-text">
-              爱好
+              Hobbies
             </a>
             <button
               onClick={() => setShowChat(!showChat)}
               className="text-white hover:text-sonic-speed transition-all duration-300 hover:neon-text"
             >
-              聊天
+              Chat
             </button>
           </div>
         </div>
@@ -138,7 +138,7 @@ export default function Home() {
             SEAN
           </h2>
           <p className="text-xl md:text-2xl font-semibold bg-gradient-to-r from-sonic-accent via-sonic-speed to-sonic-accent bg-clip-text text-transparent">
-            国际象棋手 | 小球员 | 正义守护者
+            Chess Player | Soccer Star | Guardian of Justice
           </p>
           <div className="mt-4 text-sonic-speed text-lg font-bold tracking-widest neon-text animate-pulse">
             ⚡ GOTTA GO FAST! ⚡
@@ -156,8 +156,8 @@ export default function Home() {
 
       {/* Hobbies Section */}
       <section id="hobbies" className="relative z-10 container mx-auto py-16 md:py-20 px-4">
-        <h3 className="text-4xl md:text-5xl font-bold text-center mb-12">
-          我的<span className="neon-text text-sonic-accent">超级力量</span>
+        <h3 className="text-4xl md:text-5xl font-bold text-center mb-12 text-white">
+          My <span className="neon-text text-sonic-accent">Super Powers</span>
         </h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
