@@ -7,6 +7,8 @@ import ChatBox from './components/ChatBox';
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
   const [showSoccerImage, setShowSoccerImage] = useState(false);
+  const [showMathModal, setShowMathModal] = useState(false);
+  const [showMathVideo, setShowMathVideo] = useState(false);
 
   const hobbies = [
     {
@@ -190,7 +192,10 @@ export default function Home() {
           {hobbies.map((hobby, index) => (
             <div
               key={index}
-              onClick={() => hobby.title === 'Soccer' && setShowSoccerImage(true)}
+              onClick={() => {
+                if (hobby.title === 'Soccer') setShowSoccerImage(true);
+                if (hobby.title === 'Math') setShowMathModal(true);
+              }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
                 group relative overflow-hidden ${hobby.is3D ? 'soccer-card-3d' : ''}
@@ -268,6 +273,92 @@ export default function Home() {
               <p className="text-green-200 text-sm mt-1">CR7 - Champions League vs Juventus 2018</p>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* Math Universe Modal */}
+      {showMathModal && (
+        <div
+          className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => { setShowMathModal(false); setShowMathVideo(false); }}
+        >
+          {/* Stars Background */}
+          <div className="absolute inset-0">
+            {[...Array(100)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-white rounded-full animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  opacity: Math.random() * 0.8 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => { setShowMathModal(false); setShowMathVideo(false); }}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-indigo-300 transition-colors duration-300 hover:rotate-90 transform z-50"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              🧮 <span className="text-indigo-300">Math Universe</span>
+            </h3>
+            <p className="text-indigo-200 text-sm mt-1">Click the planet to explore! 🚀</p>
+          </div>
+
+          {!showMathVideo ? (
+            /* Planet */
+            <div
+              className="relative cursor-pointer group"
+              onClick={(e) => { e.stopPropagation(); setShowMathVideo(true); }}
+            >
+              {/* Planet Glow */}
+              <div className="absolute inset-0 bg-indigo-500/30 rounded-full blur-3xl scale-150 group-hover:scale-175 transition-transform duration-500"></div>
+
+              {/* Planet Body */}
+              <div className="relative w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-indigo-400 via-purple-500 to-indigo-700 shadow-2xl group-hover:scale-110 transition-transform duration-500 overflow-hidden">
+                {/* Planet Surface Details */}
+                <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/10 to-white/20 rounded-full"></div>
+                <div className="absolute top-1/4 left-1/4 w-12 h-8 bg-indigo-300/30 rounded-full blur-sm rotate-12"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-16 h-10 bg-purple-300/20 rounded-full blur-sm -rotate-12"></div>
+
+                {/* Math Symbols on Planet */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-4xl md:text-5xl opacity-80 group-hover:opacity-100 transition-opacity">π∞∑</span>
+                </div>
+
+                {/* Ring */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 h-16 border-4 border-indigo-300/40 rounded-full -rotate-12 group-hover:rotate-0 transition-transform duration-700"></div>
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-white text-center animate-bounce">
+                <p className="text-sm">👆 Click me!</p>
+              </div>
+            </div>
+          ) : (
+            /* YouTube Video */
+            <div
+              className="relative w-full max-w-4xl mx-4 aspect-video rounded-2xl overflow-hidden shadow-2xl border-4 border-indigo-500"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/B1J6Ou4q8vE?autoplay=1"
+                title="Math Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
         </div>
       )}
 
