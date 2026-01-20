@@ -238,7 +238,7 @@ export default function Home() {
             {/* Image */}
             <div className="relative aspect-video">
               <Image
-                src="/ronaldo-bicycle-kick.jpg"
+                src="/ronaldo.jpeg"
                 alt="Cristiano Ronaldo Bicycle Kick"
                 fill
                 className="object-cover"
