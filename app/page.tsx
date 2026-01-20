@@ -1,10 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import ChatBox from './components/ChatBox';
 
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
+  const [showSoccerImage, setShowSoccerImage] = useState(false);
 
   const hobbies = [
     {
@@ -172,6 +174,7 @@ export default function Home() {
           {hobbies.map((hobby, index) => (
             <div
               key={index}
+              onClick={() => hobby.title === 'Soccer' && setShowSoccerImage(true)}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
                 group relative overflow-hidden ${hobby.is3D ? 'soccer-card-3d' : ''}
@@ -204,6 +207,53 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+      {/* Soccer Image Modal */}
+      {showSoccerImage && (
+        <div
+          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={() => setShowSoccerImage(false)}
+        >
+          <div
+            className="relative max-w-3xl w-full bg-gradient-to-br from-green-900 to-green-700 rounded-3xl shadow-2xl overflow-hidden border-4 border-green-500"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Header */}
+            <div className="bg-green-800/80 backdrop-blur-lg px-6 py-4 border-b border-green-500/30 flex justify-between items-center">
+              <div className="flex items-center gap-3">
+                <div className="text-3xl">⚽</div>
+                <div>
+                  <h3 className="text-xl font-bold text-white">Cristiano Ronaldo</h3>
+                  <p className="text-xs text-green-300">🔥 Bicycle Kick Legend</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowSoccerImage(false)}
+                className="text-2xl text-white hover:text-green-300 transition-colors duration-300 hover:rotate-90 transform"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Image */}
+            <div className="relative aspect-video">
+              <Image
+                src="/ronaldo-bicycle-kick.jpg"
+                alt="Cristiano Ronaldo Bicycle Kick"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+
+            {/* Caption */}
+            <div className="p-4 text-center bg-green-800/50">
+              <p className="text-white text-lg font-semibold">🌟 The Greatest Bicycle Kick in History! 🌟</p>
+              <p className="text-green-200 text-sm mt-1">CR7 - Champions League vs Juventus 2018</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Chat Box */}
       {showChat && <ChatBox onClose={() => setShowChat(false)} />}
