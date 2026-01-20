@@ -59,9 +59,19 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
       return '⛏️ Minecraft is Sean\'s creative playground! He loves building amazing structures and exploring infinite worlds. From castles to redstone machines, Sean\'s imagination has no limits! Every block is a possibility! 🏰✨';
     }
 
+    // About Fencing
+    if (lowerMessage.includes('fencing') || lowerMessage.includes('sword') || lowerMessage.includes('fence')) {
+      return '🤺 Fencing is Sean\'s way of combining sport with strategy! Quick reflexes, precise movements, and smart thinking - just like a real-life action hero! Every match is a battle of wits and speed. En garde! ⚔️✨';
+    }
+
+    // About Math
+    if (lowerMessage.includes('math') || lowerMessage.includes('number') || lowerMessage.includes('calculate')) {
+      return '🧮 Sean loves math! Numbers and puzzles are like adventures for his brain. From solving tricky problems to discovering patterns, math makes Sean feel like a detective uncovering secrets of the universe! ➕✖️🌟';
+    }
+
     // About hobbies
     if (lowerMessage.includes('hobby') || lowerMessage.includes('hobbies') || lowerMessage.includes('like')) {
-      return '🌟 Sean has so many hobbies! Chess exercises his mind, soccer keeps him fit, Sonic gives him passion for speed, Ultraman teaches him justice, Zootopia inspires him to be brave, and Minecraft unleashes his creativity. Every hobby makes Sean even better! ⚡';
+      return '🌟 Sean has so many hobbies! Chess exercises his mind, soccer keeps him fit, Sonic gives him passion for speed, Ultraman teaches him justice, Zootopia inspires him to be brave, Minecraft unleashes his creativity, fencing sharpens his reflexes, and math challenges his brain. Every hobby makes Sean even better! ⚡';
     }
 
     // Greetings

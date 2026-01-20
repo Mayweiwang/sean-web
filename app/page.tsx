@@ -57,6 +57,22 @@ export default function Home() {
       bgGlow: 'hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]',
       is3D: true,
     },
+    {
+      icon: '🤺',
+      title: 'Fencing',
+      description: 'Swift like lightning, precise like a laser. En garde!',
+      color: 'border-slate-400',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(148,163,184,0.5)]',
+      is3D: false,
+    },
+    {
+      icon: '🧮',
+      title: 'Math',
+      description: 'Numbers are the language of the universe. Problem solved!',
+      color: 'border-indigo-500',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(99,102,241,0.5)]',
+      is3D: false,
+    },
   ];
 
   return (
