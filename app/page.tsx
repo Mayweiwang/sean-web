@@ -47,6 +47,14 @@ export default function Home() {
       bgGlow: 'hover:shadow-[0_0_30px_rgba(251,146,60,0.5)]',
       is3D: false,
     },
+    {
+      icon: '⛏️',
+      title: 'Minecraft',
+      description: 'Building worlds block by block. The only limit is imagination!',
+      color: 'border-emerald-500',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]',
+      is3D: true,
+    },
   ];
 
   return (

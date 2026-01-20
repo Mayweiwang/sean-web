@@ -54,9 +54,14 @@ export default function ChatBox({ onClose }: ChatBoxProps) {
       return '🦊🐰 "Try Everything" is one of Sean\'s life mottos! Like Judy, he bravely tries even when facing difficulties. Every dream is worth pursuing, and every challenge is an opportunity to grow! Stay positive! ✨';
     }
 
+    // About Minecraft
+    if (lowerMessage.includes('minecraft') || lowerMessage.includes('block') || lowerMessage.includes('craft')) {
+      return '⛏️ Minecraft is Sean\'s creative playground! He loves building amazing structures and exploring infinite worlds. From castles to redstone machines, Sean\'s imagination has no limits! Every block is a possibility! 🏰✨';
+    }
+
     // About hobbies
     if (lowerMessage.includes('hobby') || lowerMessage.includes('hobbies') || lowerMessage.includes('like')) {
-      return '🌟 Sean has so many hobbies! Chess exercises his mind, soccer keeps him fit, Sonic gives him passion for speed, Ultraman teaches him justice, and Zootopia inspires him to be brave. Every hobby makes Sean even better! ⚡';
+      return '🌟 Sean has so many hobbies! Chess exercises his mind, soccer keeps him fit, Sonic gives him passion for speed, Ultraman teaches him justice, Zootopia inspires him to be brave, and Minecraft unleashes his creativity. Every hobby makes Sean even better! ⚡';
     }
 
     // Greetings
