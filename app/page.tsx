@@ -9,6 +9,8 @@ export default function Home() {
   const [showSoccerImage, setShowSoccerImage] = useState(false);
   const [showMathModal, setShowMathModal] = useState(false);
   const [showMathVideo, setShowMathVideo] = useState(false);
+  const [showMinecraftModal, setShowMinecraftModal] = useState(false);
+  const [showMinecraftVideo, setShowMinecraftVideo] = useState(false);
 
   const hobbies = [
     {
@@ -195,6 +197,7 @@ export default function Home() {
               onClick={() => {
                 if (hobby.title === 'Soccer') setShowSoccerImage(true);
                 if (hobby.title === 'Math') setShowMathModal(true);
+                if (hobby.title === 'Minecraft') setShowMinecraftModal(true);
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
@@ -353,6 +356,197 @@ export default function Home() {
               <iframe
                 src="https://www.youtube.com/embed/B1J6Ou4q8vE?autoplay=1"
                 title="Math Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Minecraft World Modal */}
+      {showMinecraftModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => { setShowMinecraftModal(false); setShowMinecraftVideo(false); }}
+        >
+          {/* Minecraft Sky Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-b from-sky-400 via-sky-300 to-sky-200"></div>
+
+          {/* Pixelated Clouds */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`cloud-${i}`}
+              className="absolute bg-white"
+              style={{
+                left: `${10 + i * 15}%`,
+                top: `${5 + (i % 3) * 8}%`,
+                width: `${60 + Math.random() * 40}px`,
+                height: '20px',
+                boxShadow: '10px 10px 0 white, 20px 0 0 white, -10px 10px 0 white',
+                imageRendering: 'pixelated',
+              }}
+            />
+          ))}
+
+          {/* Sun */}
+          <div
+            className="absolute w-16 h-16 bg-yellow-300"
+            style={{
+              top: '10%',
+              right: '15%',
+              boxShadow: '0 0 40px rgba(255, 255, 0, 0.6)',
+            }}
+          />
+
+          {/* Ground - Grass and Dirt Layers */}
+          <div className="absolute bottom-0 left-0 right-0 h-32">
+            {/* Grass Layer */}
+            <div className="absolute top-0 left-0 right-0 h-8 bg-green-600 flex">
+              {[...Array(50)].map((_, i) => (
+                <div
+                  key={`grass-${i}`}
+                  className="flex-1 h-full"
+                  style={{
+                    backgroundColor: i % 3 === 0 ? '#22c55e' : i % 3 === 1 ? '#16a34a' : '#15803d',
+                  }}
+                />
+              ))}
+            </div>
+            {/* Dirt Layer */}
+            <div className="absolute top-8 left-0 right-0 h-24 flex flex-wrap">
+              {[...Array(200)].map((_, i) => (
+                <div
+                  key={`dirt-${i}`}
+                  className="w-[2%] h-6"
+                  style={{
+                    backgroundColor: i % 4 === 0 ? '#92400e' : i % 4 === 1 ? '#78350f' : i % 4 === 2 ? '#a16207' : '#854d0e',
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Some Trees */}
+          <div className="absolute bottom-32 left-[10%]">
+            {/* Tree trunk */}
+            <div className="w-8 h-20 bg-amber-800 mx-auto" style={{ boxShadow: '4px 0 0 #78350f' }}></div>
+            {/* Tree leaves */}
+            <div className="absolute -top-12 -left-8 w-24 h-24 bg-green-700" style={{ boxShadow: '8px 8px 0 #15803d, -8px 8px 0 #15803d, 8px -8px 0 #22c55e, -8px -8px 0 #22c55e' }}></div>
+          </div>
+
+          <div className="absolute bottom-32 right-[15%]">
+            {/* Tree trunk */}
+            <div className="w-8 h-16 bg-amber-800 mx-auto" style={{ boxShadow: '4px 0 0 #78350f' }}></div>
+            {/* Tree leaves */}
+            <div className="absolute -top-10 -left-6 w-20 h-20 bg-green-600" style={{ boxShadow: '6px 6px 0 #16a34a, -6px 6px 0 #16a34a' }}></div>
+          </div>
+
+          {/* Floating Blocks */}
+          {[...Array(5)].map((_, i) => (
+            <div
+              key={`block-${i}`}
+              className="absolute w-10 h-10 animate-bounce"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${30 + (i % 2) * 10}%`,
+                animationDelay: `${i * 0.3}s`,
+                backgroundColor: i % 3 === 0 ? '#6b7280' : i % 3 === 1 ? '#f59e0b' : '#22c55e',
+                boxShadow: '4px 4px 0 rgba(0,0,0,0.3)',
+              }}
+            />
+          ))}
+
+          {/* Close Button */}
+          <button
+            onClick={() => { setShowMinecraftModal(false); setShowMinecraftVideo(false); }}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-emerald-300 transition-colors duration-300 hover:rotate-90 transform z-50 bg-black/30 rounded-lg p-2"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50 bg-black/30 rounded-lg p-3">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2" style={{ fontFamily: 'monospace' }}>
+              ⛏️ <span className="text-emerald-300">Minecraft World</span>
+            </h3>
+            <p className="text-emerald-200 text-sm mt-1">Click the block to watch! 🎮</p>
+          </div>
+
+          {!showMinecraftVideo ? (
+            /* Minecraft Block to Click */
+            <div
+              className="relative cursor-pointer group"
+              onClick={(e) => { e.stopPropagation(); setShowMinecraftVideo(true); }}
+            >
+              {/* Block Glow */}
+              <div className="absolute inset-0 bg-emerald-500/30 blur-3xl scale-150 group-hover:scale-175 transition-transform duration-500"></div>
+
+              {/* 3D Grass Block */}
+              <div className="relative w-32 h-32 md:w-48 md:h-48 group-hover:scale-110 transition-transform duration-500" style={{ transformStyle: 'preserve-3d', transform: 'rotateX(-20deg) rotateY(45deg)' }}>
+                {/* Top Face - Grass */}
+                <div
+                  className="absolute w-full h-full bg-green-500"
+                  style={{
+                    transform: 'translateZ(64px)',
+                    boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)',
+                    background: 'linear-gradient(135deg, #22c55e 25%, #16a34a 50%, #15803d 75%)',
+                  }}
+                >
+                  <div className="w-full h-full grid grid-cols-4 grid-rows-4">
+                    {[...Array(16)].map((_, i) => (
+                      <div key={i} className="border border-green-700/30" style={{ backgroundColor: i % 3 === 0 ? '#22c55e' : '#16a34a' }}></div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Front Face - Dirt with grass on top */}
+                <div
+                  className="absolute w-full h-full"
+                  style={{
+                    transform: 'rotateX(-90deg) translateZ(64px)',
+                    background: 'linear-gradient(to bottom, #22c55e 0%, #22c55e 15%, #92400e 15%, #78350f 100%)',
+                  }}
+                >
+                  <div className="w-full h-full grid grid-cols-4 grid-rows-4 pt-[15%]">
+                    {[...Array(16)].map((_, i) => (
+                      <div key={i} className="border border-amber-900/20" style={{ backgroundColor: i % 4 === 0 ? '#92400e' : '#78350f' }}></div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right Face - Dirt with grass on top */}
+                <div
+                  className="absolute w-full h-full"
+                  style={{
+                    transform: 'rotateY(90deg) translateZ(64px)',
+                    background: 'linear-gradient(to bottom, #16a34a 0%, #16a34a 15%, #78350f 15%, #854d0e 100%)',
+                  }}
+                >
+                  <div className="w-full h-full grid grid-cols-4 grid-rows-4 pt-[15%]">
+                    {[...Array(16)].map((_, i) => (
+                      <div key={i} className="border border-amber-900/20" style={{ backgroundColor: i % 3 === 0 ? '#78350f' : '#854d0e' }}></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white text-center animate-bounce bg-black/30 rounded-lg px-4 py-2">
+                <p className="text-sm font-bold" style={{ fontFamily: 'monospace' }}>👆 Click to play!</p>
+              </div>
+            </div>
+          ) : (
+            /* YouTube Video */
+            <div
+              className="relative w-full max-w-4xl mx-4 aspect-video rounded-lg overflow-hidden shadow-2xl border-4 border-emerald-500"
+              onClick={(e) => e.stopPropagation()}
+              style={{ boxShadow: '0 0 40px rgba(16, 185, 129, 0.5)' }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/zoOKYHwGgG0?autoplay=1"
+                title="Minecraft Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
