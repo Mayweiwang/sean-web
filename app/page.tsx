@@ -11,6 +11,8 @@ export default function Home() {
   const [showMathVideo, setShowMathVideo] = useState(false);
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
   const [showMinecraftVideo, setShowMinecraftVideo] = useState(false);
+  const [showUltramanModal, setShowUltramanModal] = useState(false);
+  const [showUltramanVideo, setShowUltramanVideo] = useState(false);
 
   const hobbies = [
     {
@@ -198,6 +200,7 @@ export default function Home() {
                 if (hobby.title === 'Soccer') setShowSoccerImage(true);
                 if (hobby.title === 'Math') setShowMathModal(true);
                 if (hobby.title === 'Minecraft') setShowMinecraftModal(true);
+                if (hobby.title === 'Ultraman') setShowUltramanModal(true);
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
@@ -547,6 +550,154 @@ export default function Home() {
               <iframe
                 src="https://www.youtube.com/embed/zoOKYHwGgG0?autoplay=1"
                 title="Minecraft Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Ultraman World Modal */}
+      {showUltramanModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => { setShowUltramanModal(false); setShowUltramanVideo(false); }}
+        >
+          {/* Dramatic Sky Gradient - Sunset/Battle Scene */}
+          <div className="absolute inset-0 bg-gradient-to-b from-orange-600 via-red-700 to-purple-900"></div>
+
+          {/* Light Rays from above */}
+          {[...Array(8)].map((_, i) => (
+            <div
+              key={`ray-${i}`}
+              className="absolute top-0 w-2 bg-gradient-to-b from-yellow-300/60 via-orange-400/30 to-transparent"
+              style={{
+                left: `${10 + i * 12}%`,
+                height: '60%',
+                transform: `rotate(${-15 + i * 4}deg)`,
+                transformOrigin: 'top center',
+              }}
+            />
+          ))}
+
+          {/* City Silhouette */}
+          <div className="absolute bottom-0 left-0 right-0 h-48">
+            {/* Buildings */}
+            {[...Array(20)].map((_, i) => {
+              const height = 80 + Math.random() * 120;
+              const width = 30 + Math.random() * 40;
+              return (
+                <div
+                  key={`building-${i}`}
+                  className="absolute bottom-0"
+                  style={{
+                    left: `${i * 5}%`,
+                    width: `${width}px`,
+                    height: `${height}px`,
+                    backgroundColor: '#1a1a2e',
+                    boxShadow: 'inset 0 0 20px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {/* Windows */}
+                  <div className="grid grid-cols-3 gap-1 p-2 h-full">
+                    {[...Array(12)].map((_, j) => (
+                      <div
+                        key={j}
+                        className="bg-yellow-400/70"
+                        style={{
+                          opacity: Math.random() > 0.3 ? 0.8 : 0.2,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Explosion/Energy Effects */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-red-500/30 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-1/3 right-1/4 w-24 h-24 bg-orange-500/40 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+          <div className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-yellow-500/30 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+
+          {/* Specium Ray Effect (diagonal beam) */}
+          <div
+            className="absolute w-4 h-64 bg-gradient-to-b from-cyan-300 via-cyan-400 to-transparent opacity-60 blur-sm animate-pulse"
+            style={{
+              top: '10%',
+              left: '60%',
+              transform: 'rotate(45deg)',
+            }}
+          />
+
+          {/* Close Button */}
+          <button
+            onClick={() => { setShowUltramanModal(false); setShowUltramanVideo(false); }}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-red-300 transition-colors duration-300 hover:rotate-90 transform z-50 bg-black/30 rounded-lg p-2"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50 bg-black/30 rounded-lg p-3">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              ✨ <span className="text-red-300">Ultraman Universe</span>
+            </h3>
+            <p className="text-red-200 text-sm mt-1">Click to unleash the light! 🌟</p>
+          </div>
+
+          {!showUltramanVideo ? (
+            /* Ultraman Color Timer to Click */
+            <div
+              className="relative cursor-pointer group"
+              onClick={(e) => { e.stopPropagation(); setShowUltramanVideo(true); }}
+            >
+              {/* Outer Glow */}
+              <div className="absolute inset-0 bg-cyan-500/40 rounded-full blur-3xl scale-150 group-hover:scale-175 transition-transform duration-500 animate-pulse"></div>
+
+              {/* Color Timer (the iconic chest light) */}
+              <div className="relative w-40 h-56 md:w-48 md:h-64 group-hover:scale-110 transition-transform duration-500">
+                {/* Outer Silver Frame */}
+                <div
+                  className="absolute inset-0 rounded-[50%_50%_50%_50%/60%_60%_40%_40%] bg-gradient-to-b from-gray-300 via-gray-400 to-gray-500"
+                  style={{
+                    boxShadow: '0 0 30px rgba(192,192,192,0.5), inset 0 0 20px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {/* Inner Color Timer (Blue/Cyan light) */}
+                  <div
+                    className="absolute top-[15%] left-[20%] right-[20%] bottom-[25%] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] bg-gradient-to-b from-cyan-300 via-cyan-500 to-blue-600 animate-pulse"
+                    style={{
+                      boxShadow: '0 0 40px rgba(0,255,255,0.8), 0 0 60px rgba(0,200,255,0.6), inset 0 0 30px rgba(255,255,255,0.4)',
+                    }}
+                  >
+                    {/* Inner highlight */}
+                    <div className="absolute top-[10%] left-[20%] w-[30%] h-[20%] bg-white/60 rounded-full blur-sm"></div>
+                  </div>
+                </div>
+
+                {/* Red accent lines (Ultraman's body pattern) */}
+                <div className="absolute -left-4 top-1/4 w-3 h-20 bg-gradient-to-b from-red-500 via-red-600 to-red-700 rounded-full" style={{ boxShadow: '0 0 10px rgba(239,68,68,0.6)' }}></div>
+                <div className="absolute -right-4 top-1/4 w-3 h-20 bg-gradient-to-b from-red-500 via-red-600 to-red-700 rounded-full" style={{ boxShadow: '0 0 10px rgba(239,68,68,0.6)' }}></div>
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white text-center animate-bounce bg-black/30 rounded-lg px-4 py-2">
+                <p className="text-sm font-bold">👆 Shuwatch!</p>
+              </div>
+            </div>
+          ) : (
+            /* YouTube Video */
+            <div
+              className="relative w-full max-w-4xl mx-4 aspect-video rounded-lg overflow-hidden shadow-2xl border-4 border-red-500"
+              onClick={(e) => e.stopPropagation()}
+              style={{ boxShadow: '0 0 40px rgba(239, 68, 68, 0.5)' }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/uW618phchp0?autoplay=1"
+                title="Ultraman Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
