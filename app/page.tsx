@@ -13,6 +13,8 @@ export default function Home() {
   const [showMinecraftVideo, setShowMinecraftVideo] = useState(false);
   const [showUltramanModal, setShowUltramanModal] = useState(false);
   const [showUltramanVideo, setShowUltramanVideo] = useState(false);
+  const [showChessModal, setShowChessModal] = useState(false);
+  const [showChessVideo, setShowChessVideo] = useState(false);
 
   const hobbies = [
     {
@@ -201,6 +203,7 @@ export default function Home() {
                 if (hobby.title === 'Math') setShowMathModal(true);
                 if (hobby.title === 'Minecraft') setShowMinecraftModal(true);
                 if (hobby.title === 'Ultraman') setShowUltramanModal(true);
+                if (hobby.title === 'Chess') setShowChessModal(true);
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
@@ -801,6 +804,123 @@ export default function Home() {
               <iframe
                 src="https://www.youtube.com/embed/uW618phchp0?autoplay=1"
                 title="Ultraman Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Chess World Modal */}
+      {showChessModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => { setShowChessModal(false); setShowChessVideo(false); }}
+        >
+          {/* Dark elegant background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-amber-950 via-stone-900 to-neutral-950"></div>
+
+          {/* Ambient light effects */}
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-600/10 rounded-full blur-3xl"></div>
+
+          {/* Chess Board Background */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-20">
+            <div className="w-[600px] h-[600px] grid grid-cols-8 grid-rows-8 transform rotate-45 scale-75">
+              {[...Array(64)].map((_, i) => {
+                const row = Math.floor(i / 8);
+                const col = i % 8;
+                const isLight = (row + col) % 2 === 0;
+                return (
+                  <div
+                    key={i}
+                    className={isLight ? 'bg-amber-100' : 'bg-amber-900'}
+                  />
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Floating Chess Pieces */}
+          <div className="absolute top-[15%] left-[10%] text-6xl opacity-30 animate-pulse">♔</div>
+          <div className="absolute top-[20%] right-[15%] text-5xl opacity-25 animate-pulse" style={{ animationDelay: '0.5s' }}>♕</div>
+          <div className="absolute bottom-[25%] left-[20%] text-5xl opacity-20 animate-pulse" style={{ animationDelay: '1s' }}>♗</div>
+          <div className="absolute bottom-[30%] right-[10%] text-6xl opacity-25 animate-pulse" style={{ animationDelay: '1.5s' }}>♘</div>
+          <div className="absolute top-[40%] left-[5%] text-4xl opacity-20 animate-pulse" style={{ animationDelay: '0.3s' }}>♖</div>
+          <div className="absolute top-[35%] right-[8%] text-4xl opacity-20 animate-pulse" style={{ animationDelay: '0.8s' }}>♙</div>
+
+          {/* Black pieces floating */}
+          <div className="absolute top-[10%] left-[40%] text-5xl opacity-25 animate-pulse" style={{ animationDelay: '0.2s' }}>♚</div>
+          <div className="absolute bottom-[15%] right-[35%] text-5xl opacity-20 animate-pulse" style={{ animationDelay: '0.7s' }}>♛</div>
+          <div className="absolute bottom-[40%] left-[8%] text-4xl opacity-25 animate-pulse" style={{ animationDelay: '1.2s' }}>♝</div>
+          <div className="absolute top-[50%] right-[5%] text-4xl opacity-20 animate-pulse" style={{ animationDelay: '0.4s' }}>♞</div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => { setShowChessModal(false); setShowChessVideo(false); }}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-amber-300 transition-colors duration-300 hover:rotate-90 transform z-50 bg-black/30 rounded-lg p-2"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50 bg-black/30 rounded-lg p-3">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              ♟️ <span className="text-amber-300">Chess Arena</span>
+            </h3>
+            <p className="text-amber-200 text-sm mt-1">Click the King to play! 👑</p>
+          </div>
+
+          {!showChessVideo ? (
+            /* Chess King to Click */
+            <div
+              className="relative cursor-pointer group"
+              onClick={(e) => { e.stopPropagation(); setShowChessVideo(true); }}
+            >
+              {/* Glow effect */}
+              <div className="absolute inset-0 bg-amber-500/30 rounded-full blur-3xl scale-150 group-hover:scale-175 transition-transform duration-500"></div>
+
+              {/* King piece with pedestal */}
+              <div className="relative group-hover:scale-110 transition-transform duration-500">
+                {/* Pedestal */}
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-32 h-8 bg-gradient-to-t from-amber-900 to-amber-700 rounded-t-lg" style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.5)' }}></div>
+
+                {/* Chess Board mini */}
+                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-28 h-4 grid grid-cols-8 overflow-hidden rounded-sm">
+                  {[...Array(8)].map((_, i) => (
+                    <div key={i} className={i % 2 === 0 ? 'bg-amber-100' : 'bg-amber-800'}></div>
+                  ))}
+                </div>
+
+                {/* King piece */}
+                <div
+                  className="text-[120px] md:text-[150px] filter drop-shadow-2xl"
+                  style={{
+                    textShadow: '0 0 40px rgba(251, 191, 36, 0.6), 0 10px 30px rgba(0,0,0,0.5)',
+                    color: '#fef3c7',
+                  }}
+                >
+                  ♔
+                </div>
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 text-white text-center animate-bounce bg-black/30 rounded-lg px-4 py-2">
+                <p className="text-sm font-bold">👆 Checkmate!</p>
+              </div>
+            </div>
+          ) : (
+            /* YouTube Video - Shorts format */
+            <div
+              className="relative w-full max-w-sm mx-4 aspect-[9/16] rounded-lg overflow-hidden shadow-2xl border-4 border-amber-500"
+              onClick={(e) => e.stopPropagation()}
+              style={{ boxShadow: '0 0 40px rgba(251, 191, 36, 0.5)' }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/fH0rX2uH5sc?autoplay=1"
+                title="Chess Video"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
                 className="w-full h-full"
