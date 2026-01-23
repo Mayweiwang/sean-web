@@ -89,6 +89,14 @@ export default function Home() {
       bgGlow: 'hover:shadow-[0_0_30px_rgba(20,184,166,0.5)]',
       is3D: false,
     },
+    {
+      icon: '🇫🇷',
+      title: 'French',
+      description: 'Bonjour! Learning the language of love and culture.',
+      color: 'border-blue-600',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]',
+      is3D: false,
+    },
   ];
 
   return (
@@ -213,6 +221,7 @@ export default function Home() {
                 if (hobby.title === 'Ultraman') setShowUltramanModal(true);
                 if (hobby.title === 'Chess') setShowChessModal(true);
                 if (hobby.title === 'Reading') window.open('https://www.kidsa-z.com/ng/login/class-chart', '_blank');
+                if (hobby.title === 'French') window.open('https://jelis.rkpublishing.com/student.php', '_blank');
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
