@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import ChatBox from './components/ChatBox';
 
 export default function Home() {
   const [showChat, setShowChat] = useState(false);
-  const [showSoccerImage, setShowSoccerImage] = useState(false);
+  const [showSoccerModal, setShowSoccerModal] = useState(false);
+  const [showSoccerVideo, setShowSoccerVideo] = useState(false);
   const [showMathModal, setShowMathModal] = useState(false);
   const [showMathVideo, setShowMathVideo] = useState(false);
   const [showMinecraftModal, setShowMinecraftModal] = useState(false);
@@ -197,7 +197,7 @@ export default function Home() {
             <div
               key={index}
               onClick={() => {
-                if (hobby.title === 'Soccer') setShowSoccerImage(true);
+                if (hobby.title === 'Soccer') setShowSoccerModal(true);
                 if (hobby.title === 'Math') setShowMathModal(true);
                 if (hobby.title === 'Minecraft') setShowMinecraftModal(true);
                 if (hobby.title === 'Ultraman') setShowUltramanModal(true);
@@ -235,50 +235,153 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Soccer Image Modal */}
-      {showSoccerImage && (
+      {/* Soccer Stadium Modal */}
+      {showSoccerModal && (
         <div
-          className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={() => setShowSoccerImage(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => { setShowSoccerModal(false); setShowSoccerVideo(false); }}
         >
-          <div
-            className="relative max-w-3xl w-full bg-gradient-to-br from-green-900 to-green-700 rounded-3xl shadow-2xl overflow-hidden border-4 border-green-500"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <div className="bg-green-800/80 backdrop-blur-lg px-6 py-4 border-b border-green-500/30 flex justify-between items-center">
-              <div className="flex items-center gap-3">
-                <div className="text-3xl">⚽</div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">Cristiano Ronaldo</h3>
-                  <p className="text-xs text-green-300">🔥 Bicycle Kick Legend</p>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowSoccerImage(false)}
-                className="text-2xl text-white hover:text-green-300 transition-colors duration-300 hover:rotate-90 transform"
-              >
-                ✕
-              </button>
+          {/* Stadium Background - Night Sky */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-800 to-green-900"></div>
+
+          {/* Stadium Lights */}
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={`light-${i}`}
+              className="absolute"
+              style={{
+                left: `${10 + i * 16}%`,
+                top: '5%',
+              }}
+            >
+              {/* Light pole */}
+              <div className="w-2 h-24 bg-gray-600"></div>
+              {/* Light fixture */}
+              <div
+                className="absolute -top-2 -left-4 w-10 h-6 bg-yellow-100"
+                style={{
+                  boxShadow: '0 0 60px 30px rgba(255, 255, 200, 0.4)',
+                }}
+              ></div>
+            </div>
+          ))}
+
+          {/* Soccer Field */}
+          <div className="absolute bottom-0 left-0 right-0 h-[45%] bg-gradient-to-t from-green-700 via-green-600 to-green-500" style={{ perspective: '500px' }}>
+            {/* Field Stripes */}
+            <div className="absolute inset-0 flex">
+              {[...Array(12)].map((_, i) => (
+                <div
+                  key={`stripe-${i}`}
+                  className="flex-1 h-full"
+                  style={{
+                    backgroundColor: i % 2 === 0 ? 'rgba(34, 197, 94, 0.3)' : 'transparent',
+                  }}
+                />
+              ))}
             </div>
 
-            {/* Image */}
-            <div className="relative aspect-video">
-              <Image
-                src="/ronaldo.jpeg"
-                alt="Cristiano Ronaldo Bicycle Kick"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
+            {/* Center Circle */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-white/60 rounded-full"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white/80 rounded-full"></div>
 
-            {/* Caption */}
-            <div className="p-4 text-center bg-green-800/50">
-              <p className="text-white text-lg font-semibold">🌟 The Greatest Bicycle Kick in History! 🌟</p>
-              <p className="text-green-200 text-sm mt-1">CR7 - Champions League vs Juventus 2018</p>
+            {/* Center Line */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-white/60"></div>
+
+            {/* Left Goal Area */}
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-16 h-40 border-4 border-l-0 border-white/60"></div>
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-8 h-24 border-4 border-l-0 border-white/60"></div>
+
+            {/* Right Goal Area */}
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-16 h-40 border-4 border-r-0 border-white/60"></div>
+            <div className="absolute top-1/2 right-0 -translate-y-1/2 w-8 h-24 border-4 border-r-0 border-white/60"></div>
+
+            {/* Corner Arcs */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-b-4 border-r-4 border-white/60 rounded-br-full"></div>
+            <div className="absolute top-0 right-0 w-8 h-8 border-b-4 border-l-4 border-white/60 rounded-bl-full"></div>
+            <div className="absolute bottom-0 left-0 w-8 h-8 border-t-4 border-r-4 border-white/60 rounded-tr-full"></div>
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-t-4 border-l-4 border-white/60 rounded-tl-full"></div>
+          </div>
+
+          {/* Crowd Silhouette */}
+          <div className="absolute bottom-[45%] left-0 right-0 h-20 bg-gradient-to-t from-slate-800 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 h-12 flex items-end justify-around">
+              {[...Array(40)].map((_, i) => (
+                <div
+                  key={`crowd-${i}`}
+                  className="w-3 rounded-t-full bg-slate-700"
+                  style={{
+                    height: `${8 + Math.random() * 16}px`,
+                  }}
+                />
+              ))}
             </div>
           </div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => { setShowSoccerModal(false); setShowSoccerVideo(false); }}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-green-300 transition-colors duration-300 hover:rotate-90 transform z-50 bg-black/30 rounded-lg p-2"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50 bg-black/30 rounded-lg p-3">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              ⚽ <span className="text-green-300">Soccer Stadium</span>
+            </h3>
+            <p className="text-green-200 text-sm mt-1">Kick the ball to watch! 🥅</p>
+          </div>
+
+          {!showSoccerVideo ? (
+            /* Soccer Ball to Click */
+            <div
+              className="relative cursor-pointer group"
+              onClick={(e) => { e.stopPropagation(); setShowSoccerVideo(true); }}
+            >
+              {/* Ball Glow */}
+              <div className="absolute inset-0 bg-green-400/30 rounded-full blur-3xl scale-150 group-hover:scale-175 transition-transform duration-500"></div>
+
+              {/* Soccer Ball */}
+              <div className="relative w-32 h-32 md:w-40 md:h-40 group-hover:scale-110 transition-transform duration-500 animate-bounce">
+                <div
+                  className="w-full h-full rounded-full bg-white relative overflow-hidden"
+                  style={{
+                    boxShadow: '0 10px 30px rgba(0,0,0,0.4), inset -5px -5px 20px rgba(0,0,0,0.1)',
+                  }}
+                >
+                  {/* Pentagon patterns */}
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                  <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-8 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                  <div className="absolute bottom-2 left-1/4 w-8 h-8 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                  <div className="absolute bottom-2 right-1/4 w-8 h-8 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                  <div className="absolute top-1/3 left-2 w-7 h-7 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                  <div className="absolute top-1/3 right-2 w-7 h-7 bg-black" style={{ clipPath: 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)' }}></div>
+                </div>
+              </div>
+
+              {/* Click Hint */}
+              <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white text-center animate-bounce bg-black/30 rounded-lg px-4 py-2">
+                <p className="text-sm font-bold">👆 GOAL!</p>
+              </div>
+            </div>
+          ) : (
+            /* YouTube Video - Shorts format */
+            <div
+              className="relative w-full max-w-sm mx-4 aspect-[9/16] rounded-lg overflow-hidden shadow-2xl border-4 border-green-500"
+              onClick={(e) => e.stopPropagation()}
+              style={{ boxShadow: '0 0 40px rgba(34, 197, 94, 0.5)' }}
+            >
+              <iframe
+                src="https://www.youtube.com/embed/YfSy-IxzKPI?autoplay=1"
+                title="Soccer Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          )}
         </div>
       )}
 
