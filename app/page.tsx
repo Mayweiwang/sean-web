@@ -97,6 +97,14 @@ export default function Home() {
       bgGlow: 'hover:shadow-[0_0_30px_rgba(37,99,235,0.5)]',
       is3D: false,
     },
+    {
+      icon: '🎮',
+      title: 'AI Games',
+      description: 'Dance with your body! Motion-powered gaming!',
+      color: 'border-purple-500',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]',
+      is3D: false,
+    },
   ];
 
   return (
@@ -222,6 +230,7 @@ export default function Home() {
                 if (hobby.title === 'Chess') setShowChessModal(true);
                 if (hobby.title === 'Reading') window.open('https://www.kidsa-z.com/ng/login/class-chart', '_blank');
                 if (hobby.title === 'French') window.open('https://jelis.rkpublishing.com/student.php', '_blank');
+                if (hobby.title === 'AI Games') window.open('https://ian-games.vercel.app', '_blank');
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
