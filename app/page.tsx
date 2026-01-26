@@ -15,6 +15,7 @@ export default function Home() {
   const [showUltramanVideo, setShowUltramanVideo] = useState(false);
   const [showChessModal, setShowChessModal] = useState(false);
   const [showChessVideo, setShowChessVideo] = useState(false);
+  const [showSpiritOfMathModal, setShowSpiritOfMathModal] = useState(false);
 
   const hobbies = [
     {
@@ -103,6 +104,14 @@ export default function Home() {
       description: 'Dance with your body! Motion-powered gaming!',
       color: 'border-purple-500',
       bgGlow: 'hover:shadow-[0_0_30px_rgba(168,85,247,0.5)]',
+      is3D: false,
+    },
+    {
+      icon: '🌟',
+      title: 'Spirit of Math',
+      description: 'Challenge your mind with fun math competitions!',
+      color: 'border-yellow-500',
+      bgGlow: 'hover:shadow-[0_0_30px_rgba(234,179,8,0.5)]',
       is3D: false,
     },
   ];
@@ -231,6 +240,7 @@ export default function Home() {
                 if (hobby.title === 'Reading') window.open('https://www.kidsa-z.com/ng/login/class-chart', '_blank');
                 if (hobby.title === 'French') window.open('https://jelis.rkpublishing.com/student.php', '_blank');
                 if (hobby.title === 'AI Games') window.open('https://ian-games.vercel.app', '_blank');
+                if (hobby.title === 'Spirit of Math') setShowSpiritOfMathModal(true);
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
                 transform transition-all duration-500 hover:-translate-y-3 ${hobby.is3D ? '' : 'hover:scale-105'} cursor-pointer
@@ -954,6 +964,111 @@ export default function Home() {
               />
             </div>
           )}
+        </div>
+      )}
+
+      {/* Spirit of Math Universe Modal */}
+      {showSpiritOfMathModal && (
+        <div
+          className="fixed inset-0 bg-black z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => setShowSpiritOfMathModal(false)}
+        >
+          {/* Stars Background */}
+          <div className="absolute inset-0">
+            {[...Array(150)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute bg-white rounded-full animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${Math.random() * 3 + 1}px`,
+                  height: `${Math.random() * 3 + 1}px`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  opacity: Math.random() * 0.8 + 0.2,
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Shooting Stars */}
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={`shooting-${i}`}
+              className="absolute w-1 h-1 bg-white rounded-full"
+              style={{
+                left: `${20 + i * 30}%`,
+                top: `${10 + i * 15}%`,
+                boxShadow: '0 0 6px 2px rgba(255,255,255,0.6), -20px 0 20px rgba(255,255,255,0.4), -40px 0 30px rgba(255,255,255,0.2)',
+                animation: `shooting-star ${3 + i}s linear infinite`,
+                animationDelay: `${i * 2}s`,
+              }}
+            />
+          ))}
+
+          {/* Nebula Effects */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-yellow-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-orange-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 right-1/3 w-56 h-56 bg-amber-500/10 rounded-full blur-3xl"></div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => setShowSpiritOfMathModal(false)}
+            className="absolute top-6 right-6 text-3xl text-white hover:text-yellow-300 transition-colors duration-300 hover:rotate-90 transform z-50"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-6 left-6 z-50">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              🌟 <span className="text-yellow-300">Spirit of Math</span>
+            </h3>
+            <p className="text-yellow-200 text-sm mt-1">Click the star to enter! ✨</p>
+          </div>
+
+          {/* Clickable Star */}
+          <div
+            className="relative cursor-pointer group"
+            onClick={(e) => {
+              e.stopPropagation();
+              window.open('https://spiritofmath.brightspace.com/d2l/home', '_blank');
+            }}
+          >
+            {/* Star Glow */}
+            <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-3xl scale-150 group-hover:scale-200 transition-transform duration-500 animate-pulse"></div>
+
+            {/* Star Body */}
+            <div className="relative w-48 h-48 md:w-64 md:h-64 group-hover:scale-110 transition-transform duration-500 flex items-center justify-center">
+              {/* Rotating outer ring */}
+              <div className="absolute inset-0 border-4 border-yellow-300/30 rounded-full animate-spin" style={{ animationDuration: '10s' }}></div>
+              <div className="absolute inset-4 border-2 border-yellow-400/40 rounded-full animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}></div>
+
+              {/* Main Star */}
+              <div
+                className="text-[100px] md:text-[130px] animate-pulse filter drop-shadow-2xl"
+                style={{
+                  textShadow: '0 0 40px rgba(234, 179, 8, 0.8), 0 0 80px rgba(251, 191, 36, 0.6)',
+                  animationDuration: '2s',
+                }}
+              >
+                ⭐
+              </div>
+
+              {/* Orbiting math symbols */}
+              <div className="absolute inset-0 animate-spin" style={{ animationDuration: '12s' }}>
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 text-2xl text-yellow-200">+</span>
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 text-2xl text-yellow-200">×</span>
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 text-2xl text-yellow-200">÷</span>
+                <span className="absolute right-0 top-1/2 -translate-y-1/2 text-2xl text-yellow-200">−</span>
+              </div>
+            </div>
+
+            {/* Click Hint */}
+            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white text-center animate-bounce">
+              <p className="text-sm">👆 Click to enter!</p>
+            </div>
+          </div>
         </div>
       )}
 
