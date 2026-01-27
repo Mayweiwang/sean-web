@@ -16,6 +16,7 @@ export default function Home() {
   const [showChessModal, setShowChessModal] = useState(false);
   const [showChessVideo, setShowChessVideo] = useState(false);
   const [showSpiritOfMathModal, setShowSpiritOfMathModal] = useState(false);
+  const [showAIGamesModal, setShowAIGamesModal] = useState(false);
 
   const hobbies = [
     {
@@ -239,7 +240,7 @@ export default function Home() {
                 if (hobby.title === 'Chess') setShowChessModal(true);
                 if (hobby.title === 'Reading') window.open('https://www.kidsa-z.com/ng/login/class-chart', '_blank');
                 if (hobby.title === 'French') window.open('https://jelis.rkpublishing.com/student.php', '_blank');
-                if (hobby.title === 'AI Games') window.open('https://ian-games.vercel.app', '_blank');
+                if (hobby.title === 'AI Games') setShowAIGamesModal(true);
                 if (hobby.title === 'Spirit of Math') setShowSpiritOfMathModal(true);
               }}
               className={`glass-card rounded-2xl p-6 border-t-4 ${hobby.color} ${hobby.bgGlow}
@@ -1068,6 +1069,64 @@ export default function Home() {
             <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-white text-center animate-bounce">
               <p className="text-sm">👆 Click to enter!</p>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Games Modal */}
+      {showAIGamesModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+          onClick={() => setShowAIGamesModal(false)}
+        >
+          {/* Cyberpunk Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900 via-slate-900 to-black"></div>
+
+          {/* Animated Grid */}
+          <div className="absolute inset-0 opacity-20">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: 'linear-gradient(rgba(168,85,247,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.3) 1px, transparent 1px)',
+                backgroundSize: '50px 50px',
+                animation: 'grid-move 20s linear infinite',
+              }}
+            />
+          </div>
+
+          {/* Glowing Orbs */}
+          <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 right-1/3 w-32 h-32 bg-pink-500/20 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+
+          {/* Close Button */}
+          <button
+            onClick={() => setShowAIGamesModal(false)}
+            className="absolute top-4 right-4 text-3xl text-white hover:text-purple-300 transition-colors duration-300 hover:rotate-90 transform z-50 bg-black/50 rounded-full w-12 h-12 flex items-center justify-center"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <div className="absolute top-4 left-4 z-50 bg-black/50 rounded-lg p-3">
+            <h3 className="text-2xl font-bold text-white flex items-center gap-2">
+              🎮 <span className="text-purple-300">AI Dance Game</span>
+            </h3>
+            <p className="text-purple-200 text-sm mt-1">Move your body to play!</p>
+          </div>
+
+          {/* Game iframe container */}
+          <div
+            className="relative w-[95vw] h-[85vh] max-w-7xl rounded-2xl overflow-hidden shadow-2xl border-2 border-purple-500/50"
+            onClick={(e) => e.stopPropagation()}
+            style={{ boxShadow: '0 0 60px rgba(168, 85, 247, 0.4)' }}
+          >
+            <iframe
+              src="https://ian-games.vercel.app"
+              title="AI Dance Game"
+              className="w-full h-full bg-black"
+              allow="camera; microphone; autoplay"
+            />
           </div>
         </div>
       )}
